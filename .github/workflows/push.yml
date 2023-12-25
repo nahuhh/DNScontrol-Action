@@ -1,0 +1,19 @@
+name: Push DNS changes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Push DNS changes
+        uses: koenrh/dnscontrol-action@v3
+        env:
+          DESEC_API_TOKEN: ${{ secrets.DESEC_API_TOKEN }}
+        with:
+          args: push
